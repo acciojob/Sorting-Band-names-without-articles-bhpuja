@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sort Without Articles</title>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorted Band Names</title>
     <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background: url('https://source.unsplash.com/nDqA4d5NL0k/2000x2000');
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-      }
-
-      #bands {
-        list-style: inside square;
-        font-size: 20px;
-        background: white;
-        width: 500px;
-        margin: auto;
-        padding: 0;
-        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
-      }
-
-      #bands li {
-        border-bottom: 1px solid #efefef;
-        padding: 20px;
-      }
-
-      #bands li:last-child {
-        border-bottom: 0;
-      }
-
-      a {
-        color: #ffc600;
-        text-decoration: none;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        li {
+            padding: 5px;
+            font-size: 18px;
+        }
     </style>
+</head>
+<body>
+    <h2>Sorted Band Names</h2>
+    <ul id="band"></ul>
 
-    <ul></ul>
+    <script>
+        let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+        function stripArticle(name) {
+            return name.replace(/^(a |an |the )/i, '').trim();
+        }
+
+        // Sorting the array while ignoring articles
+        let sortedSpots = touristSpots.sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
+
+        // Selecting the UL element
+        let bandList = document.getElementById('band');
+
+        // Appending sorted items to the UL
+        sortedSpots.forEach(spot => {
+            let li = document.createElement('li');
+            li.textContent = spot;
+            bandList.appendChild(li);
+        });
+    </script>
+</body>
 </html>
+
+
